@@ -6,16 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\Models\{
-    User
-};
-
-class Cargo extends Model
+class Endereco extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'cargos';
-    protected $primaryKey = 'id_cargo';
+    protected $table = 'enderecos';
+    protected $primaryKey = 'id_endereco';
     protected $dates = [
                 'create_at',
                 'updated_at',
@@ -23,7 +19,14 @@ class Cargo extends Model
     ];
 
     protected $fillable = [
-        'cargo'
+        'endereco',
+        'numero',
+        'complemento',
+        'bairro',
+        'cidade',
+        'uf',
+        'cep',
+        'observacoes',
     ];
 
     /*
@@ -32,9 +35,9 @@ class Cargo extends Model
     * ---------------------------------------------------------
     */
 
-    public function usuarios(): object {
-        return $this->belongsTo( User::class,
-                                'id_cargo',
-                                'id_cargo');
+    public function endereco(): object {
+        return $this->belongsTo( Endereco::class,
+                                'id_endereco',
+                                'id_endereco');
     }
 }
