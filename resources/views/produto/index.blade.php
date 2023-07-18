@@ -1,34 +1,43 @@
 @extends('layouts.base')
 @section('content')
-    <h1>Cargos</h1>
-<table>
+    <h1>Produtos</h1>
+<table class="table table-striped table-houver">
     <thead>
         <tr>
-            <th>Ações</th>
-            <th>ID</th>
-            <th>Cargo</th>
+            <th class="col-2">Ações</th>
+            <th class="col-1">ID</th>
+            <th>Produto</th>
+            <th>Observações</th>
+            <th>Qtd Tamanhos</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($cargos as $cargo)
+        @foreach ($produtos->get() as $produto)
         <tr>
             <td>
-                <a href="{{ route('cargo.edit', ['id'=>$cargo->id_cargo]) }}">
+                <a href="{{ route('produto.edit', ['id'=>$produto->id_produto]) }}">
                     Editar
                 </a>
-                <a href="{{ route('cargo.show', ['id'=>$cargo->id_cargo]) }}">
+                <a href="{{ route('produto.show', ['id'=>$produto->id_produto]) }}">
                     Ver
                 </a>
-                <a href="{{ route('cargo.destroy', ['id'=>$cargo->id_cargo]) }}">
+                <a href="{{ route('produto.destroy', ['id'=>$produto->id_produto]) }}">
                     Excluir
                 </a>
             </td>
             <td>
-                {{ $cargo->id_cargo}}
+                {{ $produto->id_produto}}
             </td>
             <td>
-                {{ $cargo->cargo }}
+                {{ $produto->nome }}
             </td>
+            <td>{{ nl2br($produto->observacoes) }}</td>
+            <td>
+                {!!
+                    $produto->tamanhos()->count()
+                !!}
+            </td>
+
         </tr>
         @endforeach
     </tbody>
