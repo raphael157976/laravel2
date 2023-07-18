@@ -54,13 +54,13 @@ Route::prefix('cargos')
         ->name('cargo.create');
         Route::get('/{id}','show')
         ->name('cargo.show');
-        Route::get('/editar{id}','edit')
-        ->name('cargo.editar');
+        Route::get('/editar/{id}','edit')
+        ->name('cargo.edit');
         Route::post('/store', 'store')
         ->name('cargo.store');
         Route::post('/update', 'update')
         ->name('cargo.update');
-        Route::post('/destroy', 'destroy')
+        Route::post('/destroy/{id}', 'destroy')
         ->name('cargo.destroy');
     });
 
@@ -155,13 +155,26 @@ Route::prefix('produtos')
         Route::get('/{id}','show')
         ->name('produto.show');
         Route::get('/editar{id}','edit')
-        ->name('produto.editar');
+        ->name('produto.edit');
+
+        Route::get('/tamanho/{id_produto}','createTamanho')
+        ->name('produto.createTamanho');
+        Route::get('/tamanho/editar/{id}','editTamanho')
+        ->name('produto.editTamanho');
+
         Route::post('/store', 'store')
         ->name('produto.store');
         Route::post('/update', 'update')
         ->name('produto.update');
         Route::post('/destroy', 'destroy')
         ->name('produto.destroy');
+
+        Route::post('/tamanho/store/{id_produto}','storeTamanho')
+        ->name('produto.storeTamanho');
+        Route::post('/tamanho/update', 'updateTamanho')
+            ->name('produto.updateTamanho');
+        Route::post('/tamanho/destroy', 'destroyTamanho')
+        ->name('produto.destroyTamanho');
     });
 
 /*
